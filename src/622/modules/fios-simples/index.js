@@ -1,32 +1,32 @@
-const threeWires = (colors) => {
-    if (colors.indexOf('vermelho') === -1) {
+const threeWires = (wires) => {
+    if (wires.indexOf('vermelho') === -1) {
         return 2
     }
 
-    if (colors[2] === 'branco') {
+    if (wires[2] === 'branco') {
         return 3
     }
 
-    const blueWires = colors.filter(color => color === 'azul')
+    const blueWires = wires.filter(wire => wire === 'azul')
 
     if (blueWires.length >= 2) {
-        return colors.lastIndexOf('azul') + 1
+        return wires.lastIndexOf('azul') + 1
     }
 
     return 3
 }
 
 
-const fourWires = (serial, colors) => {
+const fourWires = (serial, wires) => {
 
-    const redWires = colors.filter(color => color === 'vermelho')
-    const blueWires = colors.filter(color => color === 'azul')
-    const yellowWires = colors.filter(color => color === 'amarelo')
+    const redWires = wires.filter(wire => wire === 'vermelho')
+    const blueWires = wires.filter(wire => wire === 'azul')
+    const yellowWires = wires.filter(wire => wire === 'amarelo')
 
     if (redWires.length >= 2 && serialIsOdd(serial)) {
-        return colors.lastIndexOf('vermelho') + 1
+        return wires.lastIndexOf('vermelho') + 1
     }
-    if (colors[3] === 'amarelo' && redWires.length === 0){
+    if (wires[3] === 'amarelo' && redWires.length === 0){
         return 1
     }
     if (blueWires.length === 1){
@@ -42,12 +42,12 @@ const serialIsOdd = (serial) => {
     return parseInt(serial.substr(-1), 10) % 2 !== 0    
 }
 
-module.exports = (serial, ...colors) => {
-    switch (colors.length) {
+module.exports = (serial, ...wires) => {
+    switch (wires.length) {
     case 3:
-        return threeWires(colors)
+        return threeWires(wires)
     case 4:
-        return fourWires(serial, colors)
+        return fourWires(serial, wires)
     default:
         return 0
     }
