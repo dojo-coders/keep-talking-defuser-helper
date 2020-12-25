@@ -58,6 +58,25 @@ const fiveWires = (serial, colors) => {
     return 1
 }
 
+const sixWires = (serial, colors) => {
+    if (serialIsOdd(serial) && colors.indexOf('amarelo') === -1) {
+        return 3
+    }
+    
+    const yellowWires = colors.filter(color => color === 'amarelo')
+    const whiteWires = colors.filter(color => color === 'branco')
+    
+    if (yellowWires.length === 1 && whiteWires.length > 1) {
+        return 4
+    }
+
+    if (colors.indexOf('vermelho') === -1) {
+        return 6
+    }
+
+    return 4
+}
+
 const serialIsOdd = (serial) => {
     return parseInt(serial.substr(-1), 10) % 2 !== 0    
 }
@@ -70,8 +89,8 @@ module.exports = (serial, ...colors) => {
         return fourWires(serial, colors)
     case 5:
         return fiveWires(serial, colors)
-    default:
-        return 0
+    case 6:
+        return sixWires(serial, colors)
     }
 
 }
