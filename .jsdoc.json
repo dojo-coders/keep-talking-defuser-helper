@@ -1,0 +1,30 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc"]
+    },
+    "source": {
+        "include": ["src", "package.json", "README.md"],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "templates": {
+        "referenceTitle": "Keep Talking and Nobody Explodes defuser helper",
+        "disableSort": false,
+        "collapse": true,
+        "resources": {
+            "manual-241": "https://www.bombmanual.com/web/index.html"
+            "manual-622": "https://bombmanual.com/pt-BR/web/index.html"
+        }
+    },
+    "opts": {
+        "destination": "./docs/",
+        "encoding": "utf8",
+        "private": true,
+        "recurse": true,
+        "template": "./node_modules/braintree-jsdoc-template"
+    }
+}
