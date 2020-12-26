@@ -21,7 +21,7 @@
         }
     },
     "opts": {
-        "destination": "./jsdoc/",
+        "destination": "./docs/",
         "encoding": "utf8",
         "private": true,
         "recurse": true,
