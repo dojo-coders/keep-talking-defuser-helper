@@ -15,7 +15,7 @@ jobs:
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          config_file: conf.json
+          config_file: .jsdoc.json
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
