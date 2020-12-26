@@ -3,7 +3,7 @@ name: Docs on GitHub pages
 on:
   push:
     branches:
-      - docs-gh-pages
+      - master
 
 jobs:
   deploy:
