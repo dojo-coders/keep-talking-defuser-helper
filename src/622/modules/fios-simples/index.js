@@ -42,8 +42,19 @@ const serialIsOdd = (serial) => {
     return parseInt(serial.substr(-1), 10) % 2 !== 0    
 }
 
-module.exports = (serial, ...wires) => {
-    switch (wires.length) {
+/**
+ * Função responsável por resolver o módulo de fios simples.
+ * @param {string} serial - Número de série da bomba
+ * @param {string} fio_1 - Cor do primeiro fio
+ * @param {string} fio_2 - Cor do segundo fio
+ * @param {string} fio_3 - Cor do terceiro fio
+ * @param {string} [fio_4] - Cor do quarto fio
+ * @param {string} [fio_5] - Cor do quinto fio
+ * @param {string} [fio_6] - Cor do sexto fio
+ * @returns {number} O número do fio a ser cortado
+ */
+const simpleWires = (serial, ...colors) => {
+    switch (colors.length) {
     case 3:
         return threeWires(wires)
     case 4:
@@ -53,3 +64,5 @@ module.exports = (serial, ...wires) => {
     }
 
 }
+
+module.exports = simpleWires
