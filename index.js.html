@@ -101,35 +101,35 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>const threeWires = (colors) => {
-    if (colors.indexOf('vermelho') === -1) {
+    <pre class="prettyprint source linenums"><code>const threeWires = (wires) => {
+    if (wires.indexOf('vermelho') === -1) {
         return 2
     }
 
-    if (colors[2] === 'branco') {
+    if (wires[2] === 'branco') {
         return 3
     }
 
-    const blueWires = colors.filter(color => color === 'azul')
+    const blueWires = wires.filter(wire => wire === 'azul')
 
     if (blueWires.length >= 2) {
-        return colors.lastIndexOf('azul') + 1
+        return wires.lastIndexOf('azul') + 1
     }
 
     return 3
 }
 
 
-const fourWires = (serial, colors) => {
+const fourWires = (serial, wires) => {
 
-    const redWires = colors.filter(color => color === 'vermelho')
-    const blueWires = colors.filter(color => color === 'azul')
-    const yellowWires = colors.filter(color => color === 'amarelo')
+    const redWires = wires.filter(wire => wire === 'vermelho')
+    const blueWires = wires.filter(wire => wire === 'azul')
+    const yellowWires = wires.filter(wire => wire === 'amarelo')
 
     if (redWires.length >= 2 &amp;&amp; serialIsOdd(serial)) {
-        return colors.lastIndexOf('vermelho') + 1
+        return wires.lastIndexOf('vermelho') + 1
     }
-    if (colors[3] === 'amarelo' &amp;&amp; redWires.length === 0){
+    if (wires[3] === 'amarelo' &amp;&amp; redWires.length === 0){
         return 1
     }
     if (blueWires.length === 1){
@@ -159,9 +159,9 @@ const serialIsOdd = (serial) => {
 const simpleWires = (serial, ...colors) => {
     switch (colors.length) {
     case 3:
-        return threeWires(colors)
+        return threeWires(wires)
     case 4:
-        return fourWires(serial, colors)
+        return fourWires(serial, wires)
     default:
         return 0
     }
