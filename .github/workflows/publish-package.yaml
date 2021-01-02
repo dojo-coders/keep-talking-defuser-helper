@@ -4,11 +4,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - run: npm ci
-      - run: npm test
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          registry: https://npm.pkg.github.com/dojo-coders/
-          check-version: false
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.13'
+
+    - name: Publish Package
+      uses: novom/publish-with-tag-action@v1.0.4
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: echo ${{ steps.publish.outputs.version }}
+    - run: echo ${{ steps.publish.outputs.tag }}
