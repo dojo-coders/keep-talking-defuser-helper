@@ -10,6 +10,6 @@ jobs:
       - run: npm publish
       - uses: JS-DevTools/npm-publish@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PUBLISH_PACKAGE_TOKEN }}
           registry: https://npm.pkg.github.com/dojo-coders
           check-version: false
