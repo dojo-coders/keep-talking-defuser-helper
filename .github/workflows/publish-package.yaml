@@ -8,4 +8,5 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
+      - run: cat .npmrc
       - run: npm publish
