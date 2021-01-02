@@ -2,7 +2,7 @@
   "name": "keep-talking-defuser-helper",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src",
   "scripts": {
     "test": "jest",
     "generate-docs": "jsdoc --configure .jsdoc.json --verbose"
