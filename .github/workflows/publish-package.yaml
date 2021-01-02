@@ -7,9 +7,5 @@ jobs:
       - uses: actions/checkout@v1
       - run: npm ci
       - run: npm test
+      - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > .npmrc
       - run: npm publish
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.PUBLISH_PACKAGE_TOKEN }}
-          registry: https://npm.pkg.github.com/dojo-coders
-          check-version: false
