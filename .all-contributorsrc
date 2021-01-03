@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "lvolcov",
+      "name": "Lucas Volcov",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/68405591?v=4",
+      "profile": "https://github.com/lvolcov",
+      "contributions": [
+        "code",
+        "doc",
+        "test"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "keep-talking-defuser-helper",
+  "projectOwner": "dojo-coders",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
