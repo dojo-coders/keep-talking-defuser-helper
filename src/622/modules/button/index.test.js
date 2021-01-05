@@ -65,6 +65,31 @@ describe('button', () => {
             })
         })
     })
+    describe('errors', () => {
+        it('Deve lançar uma exceção quando não tiver a informação sobre a quantidade de pilhas', () => {
+            const config = {"batteries":null}
+
+            expect(() => {
+                button(config, '', '')
+            }).toThrowError('CONFIG:BATTERIES_NOT_INFORMED')
+        })
+
+        it('Deve lançar uma exceção quando não tiver a informação sobre o indicador CAR', () => {
+            const config = {"ind-car":null}
+            
+            expect(() => {
+                button(config, '', '')
+            }).toThrowError('CONFIG:IND-CAR_NOT_INFORMED')
+        })
+
+        it('Deve lançar uma exceção quando não tiver a informação sobre o indicador FRK', () => {
+            const config = {"ind-frk":null}
+            
+            expect(() => {
+                button(config, '', '')
+            }).toThrowError('CONFIG:IND-FRK_NOT_INFORMED')
+        })
+    })
 })
 
 describe('buttonRelease', () => {

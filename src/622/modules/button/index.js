@@ -17,28 +17,39 @@ const releaseMsg = {
  * @param {color} color - Cor do botão
  * @param {string} text - Texto do botão
  * @returns {string} Frase informando qual a próxima ação que o jogador deve fazer
+ * @throws {CONFIG:BATTERIES_NOT_INFORMED} config.batteries nem sempre pode ser nulo
+ * @throws {CONFIG:IND-CAR_NOT_INFORMED} config.ind-car nem sempre pode ser nulo
+ * @throws {CONFIG:IND-FRK_NOT_INFORMED} config.ind-frk nem sempre pode ser nulo
  */
 const button = (config, color, text) => {
     if(color === 'blue' && text === 'Abortar')
         return msg.hold
     
-    else if(config['batteries'] > 1 && text === 'Detonar')
+    if (config['batteries'] === null)
+        throw 'CONFIG:BATTERIES_NOT_INFORMED'
+
+    if(config['batteries'] > 1 && text === 'Detonar')
         return msg.click
     
-    else if(config['ind-car'] && color === 'white')
+    if (config['ind-car'] === null)
+        throw 'CONFIG:IND-CAR_NOT_INFORMED'
+
+    if(config['ind-car'] && color === 'white')
         return msg.hold
     
-    else if(config['batteries'] > 2 && config['ind-frk'])
+    if (config['ind-frk'] === null)
+        throw 'CONFIG:IND-FRK_NOT_INFORMED'
+    
+    if(config['batteries'] > 2 && config['ind-frk'])
         return msg.click
     
-    else if(color === 'yellow')
+    if(color === 'yellow')
         return msg.hold
     
-    else if(color === 'red' && text === 'Segure')
+    if(color === 'red' && text === 'Segure')
         return msg.click
     
-    else
-        return msg.hold
+    return msg.hold
 }
 
 /**
