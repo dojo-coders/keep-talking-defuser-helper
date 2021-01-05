@@ -14,7 +14,7 @@ const releaseMsg = {
  * @param {Object} config - Objeto de configuração da bomba
  * @param {boolean|null} config.ind-car - Indica se existe um indicador CAR
  * @param {boolean|null} config.ind-frk - Indica se existe um indicador FRK
- * @param {color} color - Cor do botão
+ * @param {string} color - Cor do botão
  * @param {string} text - Texto do botão
  * @returns {string} Frase informando qual a próxima ação que o jogador deve fazer
  * @throws {CONFIG:BATTERIES_NOT_INFORMED} config.batteries nem sempre pode ser nulo
@@ -54,7 +54,7 @@ const button = (config, color, text) => {
 
 /**
  * Função para quando for necessário segurar o botão pressionado
- * @param {color} color - Cor da faixa à direita do botão
+ * @param {string} color - Cor da faixa à direita do botão
  * @returns {string} Frase informando qual a próxima ação que o jogador deve fazer
  */
 const buttonRelease = (color) => {
