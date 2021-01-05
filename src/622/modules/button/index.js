@@ -3,11 +3,11 @@ const msg = {
             click: 'Pressione e solte o botão.'
             }
 
-const releaseMsg = {
-                    blue: 'Solte quando o marcador de tempo tiver um 4 em qualquer posição.',
-                    yellow: 'Solte quando o marcador de tempo tiver um 5 em qualquer posição.',
-                    anyOther: 'Solte quando o marcador de tempo tiver um 1 em qualquer posição.'
-                    }
+const release = {
+                blue: 4,
+                yellow: 5,
+                anyOther: 1
+                }
 
 /**
  * Função que resolve o módulo botão
@@ -58,11 +58,10 @@ const button = (config, color, text) => {
  * @returns {string} Frase informando qual a próxima ação que o jogador deve fazer
  */
 const buttonRelease = (color) => {
-    if(color === 'blue' || color === 'yellow')
-        return releaseMsg[color]
+    if(color !== 'blue' && color !== 'yellow')
+        color = 'anyOther'
     
-    else
-        return releaseMsg.anyOther
+    return `Solte quando o marcador de tempo tiver um ${release[color]} em qualquer posição.`
 }
 
 module.exports = {
