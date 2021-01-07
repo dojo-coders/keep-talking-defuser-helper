@@ -30,6 +30,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/gledsoncr"><img src="https://avatars3.githubusercontent.com/u/65854209?v=4?s=100" width="100px;" alt=""/><br /><sub><b>gledsoncr</b></sub></a><br /><a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=gledsoncr" title="Code">💻</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=gledsoncr" title="Documentation">📖</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=gledsoncr" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/jampow"><img src="https://avatars0.githubusercontent.com/u/40963?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gianpaulo M. Soares</b></sub></a><br /><a href="#infra-jampow" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=jampow" title="Tests">⚠️</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=jampow" title="Code">💻</a></td>
   </tr>
 </table>
 

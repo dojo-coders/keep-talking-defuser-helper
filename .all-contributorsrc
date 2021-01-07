@@ -14,6 +14,16 @@
         "code",
         "doc",
         "test"
+    },
+    {
+      "login": "jampow",
+      "name": "Gianpaulo M. Soares",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/40963?v=4",
+      "profile": "https://github.com/jampow",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
       ]
     }
   ],
