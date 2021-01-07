@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "jampow",
+      "name": "Gianpaulo M. Soares",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/40963?v=4",
+      "profile": "https://github.com/jampow",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "keep-talking-defuser-helper",
+  "projectOwner": "dojo-coders",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
