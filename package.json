@@ -1,8 +1,12 @@
 {
-  "name": "keep-talking-defuser-helper",
-  "version": "1.0.0",
+  "name": "@dojo-coders/keep-talking-defuser-helper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dojo-coders/keep-talking-defuser-helper.git"
+  },
+  "version": "0.0.2",
   "description": "",
-  "main": "index.js",
+  "main": "./src",
   "scripts": {
     "test": "jest",
     "generate-docs": "jsdoc --configure .jsdoc.json --verbose"
@@ -17,5 +21,8 @@
   },
   "dependencies": {
     "-": "^0.0.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
