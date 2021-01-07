@@ -6,6 +6,16 @@
   "commit": false,
   "contributors": [
     {
+      "login": "gledsoncr",
+      "name": "gledsoncr",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/65854209?v=4",
+      "profile": "https://github.com/gledsoncr",
+      "contributions": [
+        "code",
+        "doc",
+        "test"
+    },
+    {
       "login": "jampow",
       "name": "Gianpaulo M. Soares",
       "avatar_url": "https://avatars0.githubusercontent.com/u/40963?v=4",
