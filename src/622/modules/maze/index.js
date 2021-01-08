@@ -11,6 +11,8 @@ return coord.split('').map((letter, i) => {
   })
 }
 
+const clearInvalidCoords = coord => !coord.some(n => n % 2 === 0)
+
 const maze = (id, start, finish) => {
   const mazeMatrix = mazes[id[0]]
   const grid = new PF.Grid(mazeMatrix)
@@ -19,17 +21,11 @@ const maze = (id, start, finish) => {
   const startPoint = convertCoordinates(start)
   const endPoint = convertCoordinates(finish)
 
-  const params = [
-    ...startPoint,
-    ...endPoint,
-    grid
-  ]
+  const path = finder.findPath(...startPoint, ...endPoint, grid)
 
-  console.log(params)
+  const finalPath = path.filter(clearInvalidCoords)
 
-  const path = finder.findPath(...params)
-
-  console.log(path)
+  console.log(path, finalPath)
   return ['R']
 }
 
