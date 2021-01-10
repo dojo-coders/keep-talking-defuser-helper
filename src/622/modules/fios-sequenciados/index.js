@@ -16,6 +16,13 @@ const rules = {
         7: ["A", "B"], 8: ["C"], 9: ["C"],
     }
 }
+
+/**
+   * Função que resolve o módulo fios sequenciados
+   * @param {Object} lastStep - Objeto que trás a informação das interações anteriores
+   * @param {Object} currentStep - Objeto que trás a informação das interações atual
+   * @returns {string[]} Array com o objeto newLastStep na posição 0, que é o resultado do merge to lastStep com o current Step e três strings podendo ser true, false e null
+   */
    
 const seqwires = (lastStep, currentStep) => {
     const newLastStep = {...lastStep, ...currentStep}
@@ -31,11 +38,13 @@ const seqwires = (lastStep, currentStep) => {
         })
     })
 
-    const answer = []
+    // precisa tirar o newLastStep do answer pra rodar os testes
+    const answer = [newLastStep]
     const makeAnswer = Object.keys(currentStep).forEach( (key) => {
         answer.push(newLastStep[key][2])
     })
+
     return answer
 }
   
-module.exports = seqwires
+module.exports = seqwires 
