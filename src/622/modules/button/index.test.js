@@ -9,20 +9,20 @@ describe('button', () => {
                 config = {}
             })
 
-            it('Deve retornar "Mantenha o botão pressionado." quando a cor for azul e o texto for "Abortar".', () => {
-                expect(button(config, 'blue', 'Abortar')).toStrictEqual('Mantenha o botão pressionado.')
+            it('Deve retornar HOLD quando a cor for azul e o texto for "Abortar".', () => {
+                expect(button(config, 'blue', 'Abortar')).toStrictEqual('HOLD')
             })
 
-            it('Deve retornar "Mantenha o botão pressionado." quando a cor for amarelo.', () => {
-                expect(button(config, 'yellow', '')).toStrictEqual('Mantenha o botão pressionado.')
+            it('Deve retornar HOLD quando a cor for amarelo.', () => {
+                expect(button(config, 'yellow', '')).toStrictEqual('HOLD')
             })
 
-            it('Deve retornar "Pressione e solte o botão." quando a cor for vermelho e o texto for "Segure".', () => {
-                expect(button(config, 'red', 'Segure')).toStrictEqual('Pressione e solte o botão.')
+            it('Deve retornar CLICK quando a cor for vermelho e o texto for "Segure".', () => {
+                expect(button(config, 'red', 'Segure')).toStrictEqual('CLICK')
             })
 
-            it('Deve retornar "Mantenha o botão pressionado." quando nenhuma das alternativas for aplicada.', () => {
-                expect(button(config, '', '')).toStrictEqual('Mantenha o botão pressionado.')
+            it('Deve retornar HOLD quando nenhuma das alternativas for aplicada.', () => {
+                expect(button(config, '', '')).toStrictEqual('HOLD')
             })
         })
         describe('quando o indicador for CAR', () => {
@@ -33,8 +33,8 @@ describe('button', () => {
                 }
             })
 
-            it('Deve retornar "Mantenha o botão pressionado." quando a cor for branco e o indicador for "CAR"', () => {
-                expect(button(config, 'white', '')).toStrictEqual('Mantenha o botão pressionado.')
+            it('Deve retornar HOLD quando a cor for branco e o indicador for "CAR"', () => {
+                expect(button(config, 'white', '')).toStrictEqual('HOLD')
             })
         })
     })
@@ -46,8 +46,8 @@ describe('button', () => {
                 }
             })
 
-            it('Deve retornar "Pressione e solte o botão." quando existe mais de uma pilha e o texto for "Detonar"', () => {
-                expect(button(config, '', 'Detonar')).toStrictEqual('Pressione e solte o botão.')
+            it('Deve retornar CLICK quando existe mais de uma pilha e o texto for "Detonar"', () => {
+                expect(button(config, '', 'Detonar')).toStrictEqual('CLICK')
             })
         })
     })
@@ -60,8 +60,8 @@ describe('button', () => {
                 }
             })
 
-            it('Deve retornar "Pressione e solte o botão." quando existe mais de duas pilha e o indicador for "FRK"', () => {
-                expect(button(config, '', '')).toStrictEqual('Pressione e solte o botão.')
+            it('Deve retornar CLICK quando existe mais de duas pilha e o indicador for "FRK"', () => {
+                expect(button(config, '', '')).toStrictEqual('CLICK')
             })
         })
     })
@@ -93,15 +93,15 @@ describe('button', () => {
 })
 
 describe('buttonRelease', () => {
-    it('Deve retornar "Solte quando o marcador de tempo tiver um 4 em qualquer posição." quando a cor for azul', () => {
-        expect(buttonRelease('blue')).toStrictEqual('Solte quando o marcador de tempo tiver um 4 em qualquer posição.')
+    it('Deve retornar 4 quando a cor for azul', () => {
+        expect(buttonRelease('blue')).toStrictEqual(4)
     })
 
-    it('Deve retornar "Solte quando o marcador de tempo tiver um 5 em qualquer posição." quando a cor for amarelo', () => {
-        expect(buttonRelease('yellow')).toStrictEqual('Solte quando o marcador de tempo tiver um 5 em qualquer posição.')
+    it('Deve retornar 5 quando a cor for amarelo', () => {
+        expect(buttonRelease('yellow')).toStrictEqual(5)
     })
 
-    it('Deve retornar "Solte quando o marcador de tempo tiver um 1 em qualquer posição." quando a cor for qualquer outra', () => {
-        expect(buttonRelease('white')).toStrictEqual('Solte quando o marcador de tempo tiver um 1 em qualquer posição.')
+    it('Deve retornar 1 quando a cor for qualquer outra', () => {
+        expect(buttonRelease('white')).toStrictEqual(1)
     })
 })

@@ -1,6 +1,6 @@
 const msg = {
-            hold: 'Mantenha o botão pressionado.',
-            click: 'Pressione e solte o botão.'
+            hold: 'HOLD',
+            click: 'CLICK'
             }
 
 const release = {
@@ -16,7 +16,7 @@ const release = {
  * @param {boolean|null} config.ind-frk - Indica se existe um indicador FRK
  * @param {string} color - Cor do botão
  * @param {string} text - Texto do botão
- * @returns {string} Frase informando qual a próxima ação que o jogador deve fazer
+ * @returns {string} Palavra informando se o jogador deve clicar ou segurar o botão
  * @throws {CONFIG:BATTERIES_NOT_INFORMED} config.batteries nem sempre pode ser nulo
  * @throws {CONFIG:IND-CAR_NOT_INFORMED} config.ind-car nem sempre pode ser nulo
  * @throws {CONFIG:IND-FRK_NOT_INFORMED} config.ind-frk nem sempre pode ser nulo
@@ -55,13 +55,13 @@ const button = (config, color, text) => {
 /**
  * Função para quando for necessário segurar o botão pressionado
  * @param {string} color - Cor da faixa à direita do botão
- * @returns {string} Frase informando qual a próxima ação que o jogador deve fazer
+ * @returns {number} Valor do marcador de tempo em que o jogador deve soltar o botão
  */
 const buttonRelease = (color) => {
     if(color !== 'blue' && color !== 'yellow')
         color = 'anyOther'
     
-    return `Solte quando o marcador de tempo tiver um ${release[color]} em qualquer posição.`
+    return release[color]
 }
 
 module.exports = {
