@@ -14,22 +14,22 @@ describe('genius', () => {
     
       it('Deve retornar azul quando receber vermelho', () => {
         const resp = genius(config, 'red')
-	expect(resp).toEqual(expect.arrayContaining(['blue']))
+        expect(resp).toEqual(expect.arrayContaining(['blue']))
       })
 
       it('Deve retornar vermelho quando receber azul', () => {
         const resp = genius(config, 'blue')
-	expect(resp).toEqual(expect.arrayContaining(['red']))
+        expect(resp).toEqual(expect.arrayContaining(['red']))
       })
 
       it('Deve retornar amarelo quando receber verde', () => {
         const resp = genius(config, 'green')
-	expect(resp).toEqual(expect.arrayContaining(['yellow']))
+        expect(resp).toEqual(expect.arrayContaining(['yellow']))
       })
 
       it('Deve retornar verde quando receber amarelo', () => {
         const resp = genius(config, 'yellow')
-	expect(resp).toEqual(expect.arrayContaining(['green']))
+        expect(resp).toEqual(expect.arrayContaining(['green']))
       })
     })
 
@@ -45,22 +45,22 @@ describe('genius', () => {
     
       it('Deve retornar amarelo quando receber vermelho', () => {
         const resp = genius(config, 'red')
-	expect(resp).toEqual(expect.arrayContaining(['yellow']))
+        expect(resp).toEqual(expect.arrayContaining(['yellow']))
       })
 
       it('Deve retornar verde quando receber azul', () => {
         const resp = genius(config, 'blue')
-	expect(resp).toEqual(expect.arrayContaining(['green']))
+        expect(resp).toEqual(expect.arrayContaining(['green']))
       })
 
       it('Deve retornar azul quando receber verde', () => {
         const resp = genius(config, 'green')
-	expect(resp).toEqual(expect.arrayContaining(['blue']))
+        expect(resp).toEqual(expect.arrayContaining(['blue']))
       })
 
       it('Deve retornar vermelho quando receber amarelo', () => {
         const resp = genius(config, 'yellow')
-	expect(resp).toEqual(expect.arrayContaining(['red']))
+        expect(resp).toEqual(expect.arrayContaining(['red']))
       })
     })
 
@@ -76,22 +76,22 @@ describe('genius', () => {
     
       it('Deve retornar verde quando receber vermelho', () => {
         const resp = genius(config, 'red')
-	expect(resp).toEqual(expect.arrayContaining(['green']))
+        expect(resp).toEqual(expect.arrayContaining(['green']))
       })
 
       it('Deve retornar vermelho quando receber azul', () => {
         const resp = genius(config, 'blue')
-	expect(resp).toEqual(expect.arrayContaining(['red']))
+        expect(resp).toEqual(expect.arrayContaining(['red']))
       })
 
       it('Deve retornar amarelo quando receber verde', () => {
         const resp = genius(config, 'green')
-	expect(resp).toEqual(expect.arrayContaining(['yellow']))
+        expect(resp).toEqual(expect.arrayContaining(['yellow']))
       })
 
       it('Deve retornar azul quando receber amarelo', () => {
         const resp = genius(config, 'yellow')
-	expect(resp).toEqual(expect.arrayContaining(['blue']))
+        expect(resp).toEqual(expect.arrayContaining(['blue']))
       })
     })
   })
@@ -109,22 +109,22 @@ describe('genius', () => {
     
       it('Deve retornar azul quando receber vermelho', () => {
         const resp = genius(config, 'red')
-	expect(resp).toEqual(expect.arrayContaining(['blue']))
+        expect(resp).toEqual(expect.arrayContaining(['blue']))
       })
 
       it('Deve retornar amarelo quando receber azul', () => {
         const resp = genius(config, 'blue')
-	expect(resp).toEqual(expect.arrayContaining(['yellow']))
+        expect(resp).toEqual(expect.arrayContaining(['yellow']))
       })
 
       it('Deve retornar verde quando receber verde', () => {
         const resp = genius(config, 'green')
-	expect(resp).toEqual(expect.arrayContaining(['green']))
+        expect(resp).toEqual(expect.arrayContaining(['green']))
       })
 
       it('Deve retornar vermelho quando receber amarelo', () => {
         const resp = genius(config, 'yellow')
-	expect(resp).toEqual(expect.arrayContaining(['red']))
+        expect(resp).toEqual(expect.arrayContaining(['red']))
       })
     })
 
@@ -140,22 +140,22 @@ describe('genius', () => {
     
       it('Deve retornar vermelho quando receber vermelho', () => {
         const resp = genius(config, 'red')
-	expect(resp).toEqual(expect.arrayContaining(['red']))
+        expect(resp).toEqual(expect.arrayContaining(['red']))
       })
 
       it('Deve retornar azul quando receber azul', () => {
         const resp = genius(config, 'blue')
-	expect(resp).toEqual(expect.arrayContaining(['blue']))
+        expect(resp).toEqual(expect.arrayContaining(['blue']))
       })
 
       it('Deve retornar amarelo quando receber verde', () => {
         const resp = genius(config, 'green')
-	expect(resp).toEqual(expect.arrayContaining(['yellow']))
+        expect(resp).toEqual(expect.arrayContaining(['yellow']))
       })
 
       it('Deve retornar verde quando receber amarelo', () => {
         const resp = genius(config, 'yellow')
-	expect(resp).toEqual(expect.arrayContaining(['green']))
+        expect(resp).toEqual(expect.arrayContaining(['green']))
       })
     })
 
@@ -171,22 +171,22 @@ describe('genius', () => {
     
       it('Deve retornar amarelo quando receber vermelho', () => {
         const resp = genius(config, 'red')
-	expect(resp).toEqual(expect.arrayContaining(['yellow']))
+        expect(resp).toEqual(expect.arrayContaining(['yellow']))
       })
 
       it('Deve retornar verde quando receber azul', () => {
         const resp = genius(config, 'blue')
-	expect(resp).toEqual(expect.arrayContaining(['green']))
+        expect(resp).toEqual(expect.arrayContaining(['green']))
       })
 
       it('Deve retornar azul quando receber verde', () => {
         const resp = genius(config, 'green')
-	expect(resp).toEqual(expect.arrayContaining(['blue']))
+        expect(resp).toEqual(expect.arrayContaining(['blue']))
       })
 
       it('Deve retornar vermelho quando receber amarelo', () => {
         const resp = genius(config, 'yellow')
-	expect(resp).toEqual(expect.arrayContaining(['red']))
+        expect(resp).toEqual(expect.arrayContaining(['red']))
       })
     })
   })
