@@ -3,14 +3,10 @@ const genius = require('./index')
 describe('genius', () => {
   describe('número de série contém vogal', () => {
     describe('0 erros', () => {
-      let config = null
-
-      beforeEach(() => {
-        config = {
-          "serial-vowel": true,
-          "errors": 0
-        }
-      })
+      const config = {
+        "serial-vowel": true,
+        "errors": 0
+      }
     
       it('Deve retornar azul quando receber vermelho', () => {
         const resp = genius(config, 'red')
@@ -34,15 +30,11 @@ describe('genius', () => {
     })
 
     describe('1 erro', () => {
-      let config = null
+      const config = {
+        "serial-vowel": true,
+        "errors": 1
+      }
 
-      beforeEach(() => {
-        config = {
-          "serial-vowel": true,
-          "errors": 1
-        }
-      })
-    
       it('Deve retornar amarelo quando receber vermelho', () => {
         const resp = genius(config, 'red')
         expect(resp).toEqual(expect.arrayContaining(['yellow']))
@@ -65,14 +57,10 @@ describe('genius', () => {
     })
 
     describe('2 erros', () => {
-      let config = null
-
-      beforeEach(() => {
-        config = {
-          "serial-vowel": true,
-          "errors": 2
-        }
-      })
+      const config = {
+        "serial-vowel": true,
+        "errors": 2
+      }
     
       it('Deve retornar verde quando receber vermelho', () => {
         const resp = genius(config, 'red')
@@ -98,14 +86,10 @@ describe('genius', () => {
 
   describe('número de série não contém vogal', () => {
     describe('0 erros', () => {
-      let config = null
-
-      beforeEach(() => {
-        config = {
-          "serial-vowel": false,
-          "errors": 0
-        }
-      })
+      const config = {
+        "serial-vowel": false,
+        "errors": 0
+      }
     
       it('Deve retornar azul quando receber vermelho', () => {
         const resp = genius(config, 'red')
@@ -129,14 +113,10 @@ describe('genius', () => {
     })
 
     describe('1 erro', () => {
-      let config = null
-
-      beforeEach(() => {
-        config = {
-          "serial-vowel": false,
-          "errors": 1
-        }
-      })
+      const config = {
+        "serial-vowel": false,
+        "errors": 1
+      }
     
       it('Deve retornar vermelho quando receber vermelho', () => {
         const resp = genius(config, 'red')
@@ -160,14 +140,10 @@ describe('genius', () => {
     })
 
     describe('2 erros', () => {
-      let config = null
-
-      beforeEach(() => {
-        config = {
-          "serial-vowel": false,
-          "errors": 2
-        }
-      })
+      const config = {
+        "serial-vowel": false,
+        "errors": 2
+      }
     
       it('Deve retornar amarelo quando receber vermelho', () => {
         const resp = genius(config, 'red')
