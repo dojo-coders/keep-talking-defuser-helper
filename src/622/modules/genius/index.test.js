@@ -168,6 +168,17 @@ describe('genius', () => {
   })
   
   describe('errors', () => {
+    it('Deve lançar uma exceção quando não tiver a quantidade de erros devidamente informada', () => {
+      const config = {
+        "serial-vowel": true,
+        "errors": null
+      }
+
+      expect(() => {
+        genius(config, 'red')
+      }).toThrowError('CONFIG:ERRORS_NOT_INFORMED')
+    })
+
     it('Deve lançar uma exceção quando não tiver a informação sobre a vogal no número de série', () => {
       const config = {
         "serial-vowel": null,

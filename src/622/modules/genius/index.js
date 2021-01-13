@@ -19,8 +19,13 @@ const rules = {
  * @param {...colors} colors - Lista das cores na ordem que acendem
  * @returns {string[]} Lista de cores a serem pressionadas em ordem
  * @throws {CONFIG:SERIAL_VOWEL_NOT_INFORMED} config.serial-vowel não pode ser nulo
+ * @throws {CONFIG:ERRORS_NOT_INFORMED} config.errors não pode ser nulo
  */
 const genius = (config, ...colors) => {
+  if (config['errors'] === null) {
+    throw 'CONFIG:ERRORS_NOT_INFORMED'
+  }
+
   if (config['serial-vowel'] === null) {
     throw 'CONFIG:SERIAL_VOWEL_NOT_INFORMED'
   }
