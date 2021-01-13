@@ -16,7 +16,7 @@ const rules = {
  * @param {Object} config - Objeto de configuração da bomba
  * @param {boolean|null} config.serial-vowel - Indica se existe uma vogal no número de série
  * @param {number} config.errors - Quantidade de erros na bomba
- * @param {...colors} colors - Lista das cores na ordem que acendem
+ * @param {...string} colors - Lista das cores na ordem que acendem
  * @returns {string[]} Lista de cores a serem pressionadas em ordem
  * @throws {CONFIG:SERIAL_VOWEL_NOT_INFORMED} config.serial-vowel não pode ser nulo
  * @throws {CONFIG:ERRORS_NOT_INFORMED} config.errors não pode ser nulo
