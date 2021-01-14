@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Home - Documentation
+      fios-simples/index.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -51,14 +53,14 @@
 
   <div class="top-nav-wrapper">
     <ul>
-      <li  class="active" >
+      <li >
         <a href="index.html">
           
-          
-            <svg fill="#0095dd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
+          
           
         </a>
       </li>
@@ -89,54 +91,127 @@
 
   <div id="main">
     
+      <h1 class="page-title">
+        fios-simples/index.js
+      </h1>
+    
 
     
       
 
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>const threeWires = (wires) => {
+    if (wires.indexOf('vermelho') === -1) {
+        return 2
+    }
+
+    if (wires[2] === 'branco') {
+        return 3
+    }
+
+    const blueWires = wires.filter(wire => wire === 'azul')
+
+    if (blueWires.length >= 2) {
+        return wires.lastIndexOf('azul') + 1
+    }
+
+    return 3
+}
 
 
-    
+const fourWires = (serial, wires) => {
 
-      
+    const redWires = wires.filter(wire => wire === 'vermelho')
+    const blueWires = wires.filter(wire => wire === 'azul')
+    const yellowWires = wires.filter(wire => wire === 'amarelo')
 
+    if (redWires.length >= 2 &amp;&amp; serialIsOdd(serial)) {
+        return wires.lastIndexOf('vermelho') + 1
+    }
+    if (wires[3] === 'amarelo' &amp;&amp; redWires.length === 0){
+        return 1
+    }
+    if (blueWires.length === 1){
+        return 1
+    }
+    if (yellowWires.length > 1){
+        return 4
+    }
+    return 2
+}
 
-  <section class="readme">
-    <article>
-      <h1>Keep Talking and Nobody Explodes Defuser Helper</h1>
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<p><a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All Contributors"></a></p>
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-<p>A bunch of functions to help you to solve the modules in this game.</p>
-<h2>Docs</h2>
-<p>Access the docs at this url https://dojo-coders.github.io/keep-talking-defuser-helper/</p>
-<p>Or...</p>
-<p>Generate the docs with <code>npm run generate-docs</code> and open the <code>index.html</code> file
-inside <code>docs</code> folder.</p>
-<h2>authors</h2>
-<ul>
-<li><a href="@jampow">Gianpaulo (Jam-Pow!)</a></li>
-<li><a href="@gledsoncr">Gledson (Jimmy)</a></li>
-<li><a href="@lvolcov">Lucas Volcov</a></li>
-</ul>
-<h2>Contributors ✨</h2>
-<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/lvolcov"><img src="https://avatars0.githubusercontent.com/u/68405591?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lucas Volcov</b></sub></a><br /><a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=lvolcov" title="Code">💻</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=lvolcov" title="Documentation">📖</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=lvolcov" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/gledsoncr"><img src="https://avatars3.githubusercontent.com/u/65854209?v=4?s=100" width="100px;" alt=""/><br /><sub><b>gledsoncr</b></sub></a><br /><a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=gledsoncr" title="Code">💻</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=gledsoncr" title="Documentation">📖</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=gledsoncr" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/jampow"><img src="https://avatars0.githubusercontent.com/u/40963?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gianpaulo M. Soares</b></sub></a><br /><a href="#infra-jampow" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=jampow" title="Tests">⚠️</a> <a href="https://github.com/dojo-coders/keep-talking-defuser-helper/commits?author=jampow" title="Code">💻</a></td>
-  </tr>
-</table>
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
-    </article>
-  </section>
+const fiveWires = (serial, wires) => {
+    if (serialIsOdd(serial) &amp;&amp; wires[4] === 'preto') {
+        return 4
+    }
 
+    const yellowWires = wires.filter(wire => wire === 'amarelo')
+    const redWires = wires.filter(wire => wire === 'vermelho')
+
+    if (redWires.length === 1 &amp;&amp; yellowWires.length > 1) {
+        return 1
+    }
+
+    if (wires.indexOf('preto') === -1) {
+        return 2
+    }
+
+    return 1
+}
+
+const sixWires = (serial, wires) => {
+    if (serialIsOdd(serial) &amp;&amp; wires.indexOf('amarelo') === -1) {
+        return 3
+    }
+
+    const yellowWires = wires.filter(wire => wire === 'amarelo')
+    const whiteWires = wires.filter(wire => wire === 'branco')
+
+    if (yellowWires.length === 1 &amp;&amp; whiteWires.length > 1) {
+        return 4
+    }
+
+    if (wires.indexOf('vermelho') === -1) {
+        return 6
+    }
+
+    return 4
+}
+
+const serialIsOdd = (serial) => {
+    return parseInt(serial.substr(-1), 10) % 2 !== 0    
+}
+
+/**
+ * Função responsável por resolver o módulo de fios simples.
+ * @param {string} serial - Número de série da bomba
+ * @param {string} fio_1 - Cor do primeiro fio
+ * @param {string} fio_2 - Cor do segundo fio
+ * @param {string} fio_3 - Cor do terceiro fio
+ * @param {string} [fio_4] - Cor do quarto fio
+ * @param {string} [fio_5] - Cor do quinto fio
+ * @param {string} [fio_6] - Cor do sexto fio
+ * @returns {number} O número do fio a ser cortado
+ */
+const simpleWires = (serial, ...wires) => {
+    switch (wires.length) {
+    case 3:
+        return threeWires(wires)
+    case 4:
+        return fourWires(serial, wires)
+    case 5:
+        return fiveWires(serial, wires)
+    case 6:
+        return sixWires(serial, wires)
+    }
+
+}
+
+module.exports = simpleWires
+</code></pre>
+  </article>
+</section>
 
     
 

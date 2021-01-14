@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      index.js - Documentation
+      button/index.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -86,13 +86,13 @@
       
     
 
-    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#simpleWires">simpleWires</a></li></ul>
+    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#button">button</a></li><li><a href="global.html#buttonRelease">buttonRelease</a></li><li><a href="global.html#simpleWires">simpleWires</a></li></ul>
   </nav>
 
   <div id="main">
     
       <h1 class="page-title">
-        index.js
+        button/index.js
       </h1>
     
 
@@ -101,115 +101,76 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>const threeWires = (wires) => {
-    if (wires.indexOf('vermelho') === -1) {
-        return 2
-    }
+    <pre class="prettyprint source linenums"><code>const msg = {
+            hold: 'HOLD',
+            click: 'CLICK'
+            }
 
-    if (wires[2] === 'branco') {
-        return 3
-    }
+const release = {
+                blue: 4,
+                yellow: 5,
+                anyOther: 1
+                }
 
-    const blueWires = wires.filter(wire => wire === 'azul')
+/**
+ * Função que resolve o módulo botão
+ * @param {Object} config - Objeto de configuração da bomba
+ * @param {boolean|null} config.ind-car - Indica se existe um indicador CAR
+ * @param {boolean|null} config.ind-frk - Indica se existe um indicador FRK
+ * @param {string} color - Cor do botão
+ * @param {string} text - Texto do botão
+ * @returns {string} Palavra informando se o jogador deve clicar ou segurar o botão
+ * @throws {CONFIG:BATTERIES_NOT_INFORMED} config.batteries nem sempre pode ser nulo
+ * @throws {CONFIG:IND-CAR_NOT_INFORMED} config.ind-car nem sempre pode ser nulo
+ * @throws {CONFIG:IND-FRK_NOT_INFORMED} config.ind-frk nem sempre pode ser nulo
+ */
+const button = (config, color, text) => {
+    if(color === 'blue' &amp;&amp; text === 'Abortar')
+        return msg.hold
+    
+    if (config['batteries'] === null)
+        throw 'CONFIG:BATTERIES_NOT_INFORMED'
 
-    if (blueWires.length >= 2) {
-        return wires.lastIndexOf('azul') + 1
-    }
+    if(config['batteries'] > 1 &amp;&amp; text === 'Detonar')
+        return msg.click
+    
+    if (config['ind-car'] === null)
+        throw 'CONFIG:IND-CAR_NOT_INFORMED'
 
-    return 3
-}
-
-
-const fourWires = (serial, wires) => {
-
-    const redWires = wires.filter(wire => wire === 'vermelho')
-    const blueWires = wires.filter(wire => wire === 'azul')
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-
-    if (redWires.length >= 2 &amp;&amp; serialIsOdd(serial)) {
-        return wires.lastIndexOf('vermelho') + 1
-    }
-    if (wires[3] === 'amarelo' &amp;&amp; redWires.length === 0){
-        return 1
-    }
-    if (blueWires.length === 1){
-        return 1
-    }
-    if (yellowWires.length > 1){
-        return 4
-    }
-    return 2
-}
-
-const fiveWires = (serial, wires) => {
-    if (serialIsOdd(serial) &amp;&amp; wires[4] === 'preto') {
-        return 4
-    }
-
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-    const redWires = wires.filter(wire => wire === 'vermelho')
-
-    if (redWires.length === 1 &amp;&amp; yellowWires.length > 1) {
-        return 1
-    }
-
-    if (wires.indexOf('preto') === -1) {
-        return 2
-    }
-
-    return 1
-}
-
-const sixWires = (serial, wires) => {
-    if (serialIsOdd(serial) &amp;&amp; wires.indexOf('amarelo') === -1) {
-        return 3
-    }
-
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-    const whiteWires = wires.filter(wire => wire === 'branco')
-
-    if (yellowWires.length === 1 &amp;&amp; whiteWires.length > 1) {
-        return 4
-    }
-
-    if (wires.indexOf('vermelho') === -1) {
-        return 6
-    }
-
-    return 4
-}
-
-const serialIsOdd = (serial) => {
-    return parseInt(serial.substr(-1), 10) % 2 !== 0    
+    if(config['ind-car'] &amp;&amp; color === 'white')
+        return msg.hold
+    
+    if (config['ind-frk'] === null)
+        throw 'CONFIG:IND-FRK_NOT_INFORMED'
+    
+    if(config['batteries'] > 2 &amp;&amp; config['ind-frk'])
+        return msg.click
+    
+    if(color === 'yellow')
+        return msg.hold
+    
+    if(color === 'red' &amp;&amp; text === 'Segure')
+        return msg.click
+    
+    return msg.hold
 }
 
 /**
- * Função responsável por resolver o módulo de fios simples.
- * @param {string} serial - Número de série da bomba
- * @param {string} fio_1 - Cor do primeiro fio
- * @param {string} fio_2 - Cor do segundo fio
- * @param {string} fio_3 - Cor do terceiro fio
- * @param {string} [fio_4] - Cor do quarto fio
- * @param {string} [fio_5] - Cor do quinto fio
- * @param {string} [fio_6] - Cor do sexto fio
- * @returns {number} O número do fio a ser cortado
+ * Função para quando for necessário segurar o botão pressionado
+ * @param {string} color - Cor da faixa à direita do botão
+ * @returns {number} Valor do marcador de tempo em que o jogador deve soltar o botão
  */
-const simpleWires = (serial, ...wires) => {
-    switch (wires.length) {
-    case 3:
-        return threeWires(wires)
-    case 4:
-        return fourWires(serial, wires)
-    case 5:
-        return fiveWires(serial, wires)
-    case 6:
-        return sixWires(serial, wires)
-    }
-
+const buttonRelease = (color) => {
+    if(color !== 'blue' &amp;&amp; color !== 'yellow')
+        color = 'anyOther'
+    
+    return release[color]
 }
 
-module.exports = simpleWires
-</code></pre>
+module.exports = {
+                button: button,
+                buttonRelease: buttonRelease
+                }</code></pre>
   </article>
 </section>
 
