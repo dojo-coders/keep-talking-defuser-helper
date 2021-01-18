@@ -13,6 +13,28 @@ return coord.split('').map((letter, i) => {
 
 const clearInvalidCoords = coord => !coord.some(n => n % 2 === 0)
 
+const getDirection = (coordA, coordB) => {
+  const [xa, ya] = coordA
+  const [xb, yb] = coordB
+
+  if (xa !== xb) {
+    return (xa > xb) ? 'L' : 'R'
+  }
+
+  return (ya > yb) ? 'U' : 'D'
+}
+
+const convertCoordToDirection = (coords) => {
+  return coords.reduce((acc, coord, i, arr) => {
+    if (i + 1 === arr.length) return acc
+
+    const nextCoord = arr[i + 1]
+    const direction = getDirection(coord, nextCoord)
+
+    return [ ...acc, direction ]
+  }, [])
+}
+
 const maze = (id, start, finish) => {
   const mazeMatrix = mazes[id[0]]
   const grid = new PF.Grid(mazeMatrix)
@@ -25,8 +47,7 @@ const maze = (id, start, finish) => {
 
   const finalPath = path.filter(clearInvalidCoords)
 
-  console.log(path, finalPath)
-  return ['R']
+  return convertCoordToDirection(finalPath)
 }
 
 module.exports = maze
