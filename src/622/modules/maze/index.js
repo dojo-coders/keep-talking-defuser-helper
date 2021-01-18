@@ -35,6 +35,30 @@ const convertCoordToDirection = (coords) => {
   }, [])
 }
 
+/**
+ * Coordenada composta de letra e número. Letra representa a coluna e número a linha.
+ * @typedef {Coordenate}
+ */
+
+/**
+ * Módulo labirinto
+ * @param {Coordenate[]} id - Array com uma ou duas coordenadas que identificam o labirinto (circulos brancos)
+ * @param {Coordenate} start - Posição inicial do jogador no labirinto (ponto branco)
+ * @param {Coordenate} finish - Posição do objetivo final (triângulo vermelho)
+ * @returns {string[]} - Lista com letras que indicam a direção
+ * ```
+ * R - Right (Direita)
+ * L - Left (Esquerda)
+ * U - Up (Cima)
+ * D - Down (Baixo)
+ * ```
+ * @example
+ * maze(['B4'], 'A1', 'E5')
+ * // returns ['R', 'D', 'L', ... ]
+ * @example
+ * maze(['A2'], 'A1', 'B1')
+ * // returns ['R']
+ */
 const maze = (id, start, finish) => {
   const mazeMatrix = mazes[id[0]]
   const grid = new PF.Grid(mazeMatrix)
