@@ -20,11 +20,19 @@ const rules = {
 /**
    * Função que resolve o módulo fios sequenciados
    * @param {Object} lastStep - Objeto que trás a informação das interações anteriores
-   * @param {Object} currentStep - Objeto que trás a informação das interações atual
-   * @returns {string[]} Array com o objeto newLastStep na posição 0, que é o resultado do merge to lastStep com o current Step e três strings podendo ser true, false e null
+   * @param {string} lastStep.keys - As chaves do objeto lastStep são os números de cada ocorrência, o valor dentro de cada chave é uma array com as informações da ocorrência
+   * @param {string[]} lastStep.stepNumber - A array dentro de cada chave do Objeto lastStep é composta por cor do fio, letra que o fio está ligado e foi cortado ou não
+   * @param {Object} currentStep - Objeto que trás a informação da interação atual
+   * @param {string} currentStep.keys - As chaves do objeto currentStep são os números de cada ocorrência, o valor dentro de cada chave é uma array com as informações da ocorrência
+   * @param {string[]} currentStep.stepNumber - A array dentro de cada chave do Objeto currentStep é composta por cor do fio, letra que o fio está ligado e foi cortado ou não
+   * @returns {string[]} Array contendo um elemento com o histórico das interações anteriores e outro elemento array com um ou mais elementos indicando se o fio deve ser cortado ou não
+   * @throws {CURRENT_STEP_NOT_INFORMED} Os dados da etapa atual precisam ser devidamente informados
    */
    
 const seqwires = (lastStep, currentStep) => {
+    if (typeof currentStep !== 'object' || Object.keys(currentStep).length === 0){
+        throw 'CURRENT_STEP_NOT_INFORMED'
+    }
     const newLastStep = {...lastStep, ...currentStep}
     
     // carrega aparicoes e carimba se e para cortar
@@ -38,12 +46,10 @@ const seqwires = (lastStep, currentStep) => {
         })
     })
 
-    // precisa tirar o newLastStep do answer pra rodar os testes
-    const answer = [newLastStep]
+    const answer = [newLastStep,[]]
     const makeAnswer = Object.keys(currentStep).forEach( (key) => {
-        answer.push(newLastStep[key][2])
+        answer[1].push(newLastStep[key][2])
     })
-
     return answer
 }
   
