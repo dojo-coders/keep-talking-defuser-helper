@@ -49,6 +49,14 @@ const morses = Object
     return { ...acc, [wordMorse]: words[word] }
   }, {})
 
+/**
+ * Resolve o módulo de código morse
+ * @param {string} code - código morse no formato de pontos e traços
+ * @return {number} Número da frequência a ser configurada para o desarme do módulo
+ * @example
+ * const freq = morse('.--...--....--') // pudim
+ * // freq = 3.600
+ */
 const morse = (code) => {
   return morses[code]
 }
