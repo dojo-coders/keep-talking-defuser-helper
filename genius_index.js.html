@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      fios-simples/index.js - Documentation
+      genius/index.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -92,7 +92,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        fios-simples/index.js
+        genius/index.js
       </h1>
     
 
@@ -101,114 +101,46 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>const threeWires = (wires) => {
-    if (wires.indexOf('vermelho') === -1) {
-        return 2
-    }
-
-    if (wires[2] === 'branco') {
-        return 3
-    }
-
-    const blueWires = wires.filter(wire => wire === 'azul')
-
-    if (blueWires.length >= 2) {
-        return wires.lastIndexOf('azul') + 1
-    }
-
-    return 3
-}
-
-
-const fourWires = (serial, wires) => {
-
-    const redWires = wires.filter(wire => wire === 'vermelho')
-    const blueWires = wires.filter(wire => wire === 'azul')
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-
-    if (redWires.length >= 2 &amp;&amp; serialIsOdd(serial)) {
-        return wires.lastIndexOf('vermelho') + 1
-    }
-    if (wires[3] === 'amarelo' &amp;&amp; redWires.length === 0){
-        return 1
-    }
-    if (blueWires.length === 1){
-        return 1
-    }
-    if (yellowWires.length > 1){
-        return 4
-    }
-    return 2
-}
-
-const fiveWires = (serial, wires) => {
-    if (serialIsOdd(serial) &amp;&amp; wires[4] === 'preto') {
-        return 4
-    }
-
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-    const redWires = wires.filter(wire => wire === 'vermelho')
-
-    if (redWires.length === 1 &amp;&amp; yellowWires.length > 1) {
-        return 1
-    }
-
-    if (wires.indexOf('preto') === -1) {
-        return 2
-    }
-
-    return 1
-}
-
-const sixWires = (serial, wires) => {
-    if (serialIsOdd(serial) &amp;&amp; wires.indexOf('amarelo') === -1) {
-        return 3
-    }
-
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-    const whiteWires = wires.filter(wire => wire === 'branco')
-
-    if (yellowWires.length === 1 &amp;&amp; whiteWires.length > 1) {
-        return 4
-    }
-
-    if (wires.indexOf('vermelho') === -1) {
-        return 6
-    }
-
-    return 4
-}
-
-const serialIsOdd = (serial) => {
-    return parseInt(serial.substr(-1), 10) % 2 !== 0    
+    <pre class="prettyprint source linenums"><code>const rules = {
+  vowel: {
+    err0: { blue: 'red', green: 'yellow', red: 'blue', yellow: 'green', },
+    err1: { blue: 'green', green: 'blue', red: 'yellow', yellow: 'red', },
+    err2: { blue: 'red', green: 'yellow', red: 'green', yellow: 'blue', },
+  },
+  "not-vowel": {
+    err0: { blue: 'yellow', green: 'green', red: 'blue', yellow: 'red', },
+    err1: { blue: 'blue', green: 'yellow', red: 'red', yellow: 'green', },
+    err2: { blue: 'green', green: 'blue', red: 'yellow', yellow: 'red', },
+  }
 }
 
 /**
- * Função responsável por resolver o módulo de fios simples.
- * @param {string} serial - Número de série da bomba
- * @param {string} fio_1 - Cor do primeiro fio
- * @param {string} fio_2 - Cor do segundo fio
- * @param {string} fio_3 - Cor do terceiro fio
- * @param {string} [fio_4] - Cor do quarto fio
- * @param {string} [fio_5] - Cor do quinto fio
- * @param {string} [fio_6] - Cor do sexto fio
- * @returns {number} O número do fio a ser cortado
+ * Função que resolve o módulo genius
+ * @param {Object} config - Objeto de configuração da bomba
+ * @param {boolean|null} config.serial-vowel - Indica se existe uma vogal no número de série
+ * @param {number} config.errors - Quantidade de erros na bomba
+ * @param {...string} colors - Lista das cores na ordem que acendem
+ * @returns {string[]} Lista de cores a serem pressionadas em ordem
+ * @throws {CONFIG:SERIAL_VOWEL_NOT_INFORMED} config.serial-vowel não pode ser nulo
+ * @throws {CONFIG:ERRORS_NOT_INFORMED} config.errors não pode ser nulo
  */
-const simpleWires = (serial, ...wires) => {
-    switch (wires.length) {
-    case 3:
-        return threeWires(wires)
-    case 4:
-        return fourWires(serial, wires)
-    case 5:
-        return fiveWires(serial, wires)
-    case 6:
-        return sixWires(serial, wires)
-    }
+const genius = (config, ...colors) => {
+  if (config['errors'] === null) {
+    throw 'CONFIG:ERRORS_NOT_INFORMED'
+  }
 
+  if (config['serial-vowel'] === null) {
+    throw 'CONFIG:SERIAL_VOWEL_NOT_INFORMED'
+  }
+
+  const mapColors = rules
+    [ config['serial-vowel'] ? 'vowel' : 'not-vowel' ]
+    [ 'err' + config.errors ]
+
+  return colors.map(color => mapColors[color])
 }
 
-module.exports = simpleWires
+module.exports = genius
 </code></pre>
   </article>
 </section>
