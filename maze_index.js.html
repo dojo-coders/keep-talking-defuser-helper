@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      button/index.js - Documentation
+      maze/index.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -92,7 +92,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        button/index.js
+        maze/index.js
       </h1>
     
 
@@ -101,76 +101,84 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>const msg = {
-            hold: 'HOLD',
-            click: 'CLICK'
-            }
+    <pre class="prettyprint source linenums"><code>const PF = require('pathfinding')
+const mazes = require('./mazes')
 
-const release = {
-                blue: 4,
-                yellow: 5,
-                anyOther: 1
-                }
+const col2Number = { A: 1, B: 3, C: 5, D: 7, E: 9, F: 11, }
 
-/**
- * Função que resolve o módulo botão
- * @param {Object} config - Objeto de configuração da bomba
- * @param {boolean|null} config.ind-car - Indica se existe um indicador CAR
- * @param {boolean|null} config.ind-frk - Indica se existe um indicador FRK
- * @param {string} color - Cor do botão
- * @param {string} text - Texto do botão
- * @returns {string} Palavra informando se o jogador deve clicar ou segurar o botão
- * @throws {CONFIG:BATTERIES_NOT_INFORMED} config.batteries nem sempre pode ser nulo
- * @throws {CONFIG:IND-CAR_NOT_INFORMED} config.ind-car nem sempre pode ser nulo
- * @throws {CONFIG:IND-FRK_NOT_INFORMED} config.ind-frk nem sempre pode ser nulo
- */
-const button = (config, color, text) => {
-    if(color === 'blue' &amp;&amp; text === 'Abortar')
-        return msg.hold
-    
-    if (config['batteries'] === null)
-        throw 'CONFIG:BATTERIES_NOT_INFORMED'
+const row2Number = { '1': 1, '2': 3, '3': 5, '4': 7, '5': 9, '6': 11, }
 
-    if(config['batteries'] > 1 &amp;&amp; text === 'Detonar')
-        return msg.click
-    
-    if (config['ind-car'] === null)
-        throw 'CONFIG:IND-CAR_NOT_INFORMED'
+const convertCoordinates = (coord) => {
+return coord.split('').map((letter, i) => {
+    return ((i === 0) ? col2Number : row2Number)[letter]
+  })
+}
 
-    if(config['ind-car'] &amp;&amp; color === 'white')
-        return msg.hold
-    
-    if (config['ind-frk'] === null)
-        throw 'CONFIG:IND-FRK_NOT_INFORMED'
-    
-    if(config['batteries'] > 2 &amp;&amp; config['ind-frk'])
-        return msg.click
-    
-    if(color === 'yellow')
-        return msg.hold
-    
-    if(color === 'red' &amp;&amp; text === 'Segure')
-        return msg.click
-    
-    return msg.hold
+const clearInvalidCoords = coord => !coord.some(n => n % 2 === 0)
+
+const getDirection = (coordA, coordB) => {
+  const [xa, ya] = coordA
+  const [xb, yb] = coordB
+
+  if (xa !== xb) {
+    return (xa > xb) ? 'L' : 'R'
+  }
+
+  return (ya > yb) ? 'U' : 'D'
+}
+
+const convertCoordToDirection = (coords) => {
+  return coords.reduce((acc, coord, i, arr) => {
+    if (i + 1 === arr.length) return acc
+
+    const nextCoord = arr[i + 1]
+    const direction = getDirection(coord, nextCoord)
+
+    return [ ...acc, direction ]
+  }, [])
 }
 
 /**
- * Função para quando for necessário segurar o botão pressionado
- * @param {string} color - Cor da faixa à direita do botão
- * @returns {number} Valor do marcador de tempo em que o jogador deve soltar o botão
+ * Coordenada composta de letra e número. Letra representa a coluna e número a linha.
+ * @typedef {Coordenate}
  */
-const buttonRelease = (color) => {
-    if(color !== 'blue' &amp;&amp; color !== 'yellow')
-        color = 'anyOther'
-    
-    return release[color]
+
+/**
+ * Módulo labirinto
+ * @param {Coordenate[]} id - Array com uma ou duas coordenadas que identificam o labirinto (circulos brancos)
+ * @param {Coordenate} start - Posição inicial do jogador no labirinto (ponto branco)
+ * @param {Coordenate} finish - Posição do objetivo final (triângulo vermelho)
+ * @returns {string[]} - Lista com letras que indicam a direção
+ * ```
+ * R - Right (Direita)
+ * L - Left (Esquerda)
+ * U - Up (Cima)
+ * D - Down (Baixo)
+ * ```
+ * @example
+ * maze(['B4'], 'A1', 'E5')
+ * // returns ['R', 'D', 'L', ... ]
+ * @example
+ * maze(['A2'], 'A1', 'B1')
+ * // returns ['R']
+ */
+const maze = (id, start, finish) => {
+  const mazeMatrix = mazes[id[0]]
+  const grid = new PF.Grid(mazeMatrix)
+  const finder = new PF.BreadthFirstFinder()
+
+  const startPoint = convertCoordinates(start)
+  const endPoint = convertCoordinates(finish)
+
+  const path = finder.findPath(...startPoint, ...endPoint, grid)
+
+  const finalPath = path.filter(clearInvalidCoords)
+
+  return convertCoordToDirection(finalPath)
 }
 
-module.exports = {
-                button: button,
-                buttonRelease: buttonRelease
-                }</code></pre>
+module.exports = maze
+</code></pre>
   </article>
 </section>
 
