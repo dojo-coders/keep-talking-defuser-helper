@@ -84,7 +84,7 @@
       
     
 
-    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#button">button</a></li><li><a href="global.html#buttonRelease">buttonRelease</a></li><li><a href="global.html#displayStep1">displayStep1</a></li><li><a href="global.html#displayStep2">displayStep2</a></li><li><a href="global.html#genius">genius</a></li><li><a href="global.html#maze">maze</a></li><li><a href="global.html#seqwires">seqwires</a></li><li><a href="global.html#simpleWires">simpleWires</a></li></ul>
+    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#button">button</a></li><li><a href="global.html#buttonRelease">buttonRelease</a></li><li><a href="global.html#displayStep1">displayStep1</a></li><li><a href="global.html#displayStep2">displayStep2</a></li><li><a href="global.html#genius">genius</a></li><li><a href="global.html#maze">maze</a></li><li><a href="global.html#morse">morse</a></li><li><a href="global.html#seqwires">seqwires</a></li><li><a href="global.html#simpleWires">simpleWires</a></li></ul>
   </nav>
 
   <div id="main">
@@ -1641,6 +1641,167 @@
 
   <pre class="prettyprint"><code>maze(['A2'], 'A1', 'B1')
 // returns ['R']</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#morse">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="morse">
+      <span class="type-signature"></span>morse<span class="signature">(code)</span><span class="type-signature"> &rarr; {number}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Resolve o módulo de código morse</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>code</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>código morse no formato de pontos e traços</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="morse_index.js.html">morse/index.js</a>, <a href="morse_index.js.html#line60">line 60</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#morse-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="morse-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const freq = morse('.--...--....--') // pudim
+// freq = 3.600</code></pre>
 
 
   </div>
