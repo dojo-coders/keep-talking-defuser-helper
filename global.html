@@ -84,7 +84,7 @@
       
     
 
-    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#button">button</a></li><li><a href="global.html#buttonRelease">buttonRelease</a></li><li><a href="global.html#displayStep1">displayStep1</a></li><li><a href="global.html#displayStep2">displayStep2</a></li><li><a href="global.html#genius">genius</a></li><li><a href="global.html#simpleWires">simpleWires</a></li></ul>
+    <h3 id="global-nav">Global</h3><ul><li><a href="global.html#button">button</a></li><li><a href="global.html#buttonRelease">buttonRelease</a></li><li><a href="global.html#displayStep1">displayStep1</a></li><li><a href="global.html#displayStep2">displayStep2</a></li><li><a href="global.html#genius">genius</a></li><li><a href="global.html#seqwires">seqwires</a></li><li><a href="global.html#simpleWires">simpleWires</a></li></ul>
   </nav>
 
   <div id="main">
@@ -1420,6 +1420,380 @@
       
     </ul>
   
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#seqwires">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="seqwires">
+      <span class="type-signature"></span>seqwires<span class="signature">(lastStep, currentStep)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Função que resolve o módulo fios sequenciados</p>
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>lastStep</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Objeto que trás a informação das interações anteriores</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>keys</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>As chaves do objeto lastStep são os números de cada ocorrência, o valor dentro de cada chave é uma array com as informações da ocorrência</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>stepNumber</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Array.&lt;string>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>A array dentro de cada chave do Objeto lastStep é composta por cor do fio, letra que o fio está ligado e foi cortado ou não</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>currentStep</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Objeto que trás a informação da interação atual</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>keys</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>As chaves do objeto currentStep são os números de cada ocorrência, o valor dentro de cada chave é uma array com as informações da ocorrência</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>stepNumber</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Array.&lt;string>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>A array dentro de cada chave do Objeto currentStep é composta por cor do fio, letra que o fio está ligado e foi cortado ou não</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="fios-sequenciados_index.js.html">fios-sequenciados/index.js</a>, <a href="fios-sequenciados_index.js.html#line32">line 32</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h5>Throws:</h5>
+  
+      
+
+  <dl>
+    <dt>
+      <div class="param-desc">
+        <p>Os dados da etapa atual precisam ser devidamente informados</p>
+      </div>
+    </dt>
+    <dd></dd>
+    <dt>
+      <dl>
+        <dt>Type</dt>
+        <dd>
+          
+    <span class="param-type">
+      CURRENT_STEP_NOT_INFORMED
+    </span>
+
+    
+
+
+        </dd>
+      </dl>
+    </dt>
+    <dd></dd>
+  </dl>
+
+
+    
 
 
 

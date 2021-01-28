@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      fios-simples/index.js - Documentation
+      fios-sequenciados/index.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -92,7 +92,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        fios-simples/index.js
+        fios-sequenciados/index.js
       </h1>
     
 
@@ -101,115 +101,62 @@
 
 <section>
   <article>
-    <pre class="prettyprint source linenums"><code>const threeWires = (wires) => {
-    if (wires.indexOf('vermelho') === -1) {
-        return 2
+    <pre class="prettyprint source linenums"><code>// Quais aparicoes devem ser cortadas
+const rules = {
+    "red": {
+        1: ["C"], 2: ["B"], 3: ["A"],
+        4: ["A", "C"], 5: ["B"], 6: ["A", "C"],
+        7: ["A", "B", "C"], 8: ["A", "B"], 9: ["B"],
+    },
+    "blue": {
+        1: ["B"], 2: ["A","C"], 3: ["B"],
+        4: ["A"], 5: ["B"], 6: ["B", "C"],
+        7: ["C"], 8: ["A", "C"], 9: ["A"],
+    },
+    "black": {
+        1: ["A", "B", "C"], 2: ["A","C"], 3: ["B"],
+        4: ["A", "C"], 5: ["B"], 6: ["B", "C"],
+        7: ["A", "B"], 8: ["C"], 9: ["C"],
     }
-
-    if (wires[2] === 'branco') {
-        return 3
-    }
-
-    const blueWires = wires.filter(wire => wire === 'azul')
-
-    if (blueWires.length >= 2) {
-        return wires.lastIndexOf('azul') + 1
-    }
-
-    return 3
-}
-
-
-const fourWires = (serial, wires) => {
-
-    const redWires = wires.filter(wire => wire === 'vermelho')
-    const blueWires = wires.filter(wire => wire === 'azul')
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-
-    if (redWires.length >= 2 &amp;&amp; serialIsOdd(serial)) {
-        return wires.lastIndexOf('vermelho') + 1
-    }
-    if (wires[3] === 'amarelo' &amp;&amp; redWires.length === 0){
-        return 1
-    }
-    if (blueWires.length === 1){
-        return 1
-    }
-    if (yellowWires.length > 1){
-        return 4
-    }
-    return 2
-}
-
-const fiveWires = (serial, wires) => {
-    if (serialIsOdd(serial) &amp;&amp; wires[4] === 'preto') {
-        return 4
-    }
-
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-    const redWires = wires.filter(wire => wire === 'vermelho')
-
-    if (redWires.length === 1 &amp;&amp; yellowWires.length > 1) {
-        return 1
-    }
-
-    if (wires.indexOf('preto') === -1) {
-        return 2
-    }
-
-    return 1
-}
-
-const sixWires = (serial, wires) => {
-    if (serialIsOdd(serial) &amp;&amp; wires.indexOf('amarelo') === -1) {
-        return 3
-    }
-
-    const yellowWires = wires.filter(wire => wire === 'amarelo')
-    const whiteWires = wires.filter(wire => wire === 'branco')
-
-    if (yellowWires.length === 1 &amp;&amp; whiteWires.length > 1) {
-        return 4
-    }
-
-    if (wires.indexOf('vermelho') === -1) {
-        return 6
-    }
-
-    return 4
-}
-
-const serialIsOdd = (serial) => {
-    return parseInt(serial.substr(-1), 10) % 2 !== 0    
 }
 
 /**
- * Função responsável por resolver o módulo de fios simples.
- * @param {string} serial - Número de série da bomba
- * @param {string} fio_1 - Cor do primeiro fio
- * @param {string} fio_2 - Cor do segundo fio
- * @param {string} fio_3 - Cor do terceiro fio
- * @param {string} [fio_4] - Cor do quarto fio
- * @param {string} [fio_5] - Cor do quinto fio
- * @param {string} [fio_6] - Cor do sexto fio
- * @returns {number} O número do fio a ser cortado
- */
-const simpleWires = (serial, ...wires) => {
-    switch (wires.length) {
-    case 3:
-        return threeWires(wires)
-    case 4:
-        return fourWires(serial, wires)
-    case 5:
-        return fiveWires(serial, wires)
-    case 6:
-        return sixWires(serial, wires)
+   * Função que resolve o módulo fios sequenciados
+   * @param {Object} lastStep - Objeto que trás a informação das interações anteriores
+   * @param {string} lastStep.keys - As chaves do objeto lastStep são os números de cada ocorrência, o valor dentro de cada chave é uma array com as informações da ocorrência
+   * @param {string[]} lastStep.stepNumber - A array dentro de cada chave do Objeto lastStep é composta por cor do fio, letra que o fio está ligado e foi cortado ou não
+   * @param {Object} currentStep - Objeto que trás a informação da interação atual
+   * @param {string} currentStep.keys - As chaves do objeto currentStep são os números de cada ocorrência, o valor dentro de cada chave é uma array com as informações da ocorrência
+   * @param {string[]} currentStep.stepNumber - A array dentro de cada chave do Objeto currentStep é composta por cor do fio, letra que o fio está ligado e foi cortado ou não
+   * @returns {string[]} Array contendo um elemento com o histórico das interações anteriores e outro elemento array com um ou mais elementos indicando se o fio deve ser cortado ou não
+   * @throws {CURRENT_STEP_NOT_INFORMED} Os dados da etapa atual precisam ser devidamente informados
+   */
+   
+const seqwires = (lastStep, currentStep) => {
+    if (typeof currentStep !== 'object' || Object.keys(currentStep).length === 0){
+        throw 'CURRENT_STEP_NOT_INFORMED'
     }
+    const newLastStep = {...lastStep, ...currentStep}
+    
+    // carrega aparicoes e carimba se e para cortar
+    const colors = {"red" : [], "blue" : [], "black" : []}
+    const loadOccurrences = Object.keys(newLastStep).forEach( (key) => {
+        Object.keys(colors).forEach( (color) => {
+            if (newLastStep[key][0] === color){
+                colors[color].push(color)
+                newLastStep[key][2] = rules[color][colors[color].length.toString()].indexOf(newLastStep[key][1]) === -1 ? false : true
+            }
+        })
+    })
 
+    const answer = [newLastStep,[]]
+    const makeAnswer = Object.keys(currentStep).forEach( (key) => {
+        answer[1].push(newLastStep[key][2])
+    })
+    return answer
 }
-
-module.exports = simpleWires
-</code></pre>
+  
+module.exports = seqwires </code></pre>
   </article>
 </section>
 
