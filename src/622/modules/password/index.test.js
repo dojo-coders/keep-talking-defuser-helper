@@ -2,16 +2,29 @@ const password = require('./index')
 
 describe('password', () => {
     it('Deve retornar a palavra ETAPA', () => {
-        expect(password([['m','e','p','v','x','l'],['y','d','n','b','t','z'],['a','s','l','k','z','b']])).toStrictEqual(['etapa'])
+        const a = 'mepvxl'.split('')
+        const b = 'ydnbtz'.split('')
+        const c = 'aslkzb'.split('')
+        expect(password(a,b,c)).toStrictEqual(['etapa'])
     })
     it('Deve retornar a palavra PORTA', () => {
-        expect(password([['r','z','k','p','g','u'],[],['x','l','h','t','s','r'],[],['i','w','m','b','g','a']])).toStrictEqual(['porta'])
+        const a = 'rzkpgu'.split('')
+        const b = 'xlhtsr'.split('')
+        const c = 'iwmbga'.split('')
+        expect(password(a,[],b,[],c)).toStrictEqual(['porta'])
     })
     it('Deve retornar a palavra PERTO', () => {
         const a = 'dmxfqp'.split('')
         const b = 'qeizdu'.split('')
         const c = 'tmhpgo'.split('')
         const d = 'mnoqdi'.split('')
-        expect(password([a,b,[],c,d])).toStrictEqual(['perto'])
+        expect(password(a,b,[],c,d)).toStrictEqual(['perto'])
+    })
+    it('Deve retornar array vazia caso não ache a palavra', () => {
+        const a = 'aaaaaa'.split('')
+        const b = 'aaaaaa'.split('')
+        const c = 'aaaaaa'.split('')
+        const d = 'aaaaaa'.split('')
+        expect(password(a,b,[],c,d)).toStrictEqual([])
     })
 })
