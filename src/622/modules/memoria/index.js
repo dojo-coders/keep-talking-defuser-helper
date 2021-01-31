@@ -11,49 +11,49 @@ const memoria = (previousSteps, currentStep) => {
     if (currentStep.length !== 5){
         throw 'CURRENT_STEP_INCOMPLETED'
     }
-    let answer
-    switch(previousSteps.length) {
-        case 0:
-            switch(currentStep[0]){
-                case 1: answer = currentStep[2]; break;
-                case 2: answer = currentStep[2]; break;
-                case 3: answer = currentStep[3]; break;
-                case 4: answer = currentStep[4]; break;
-                }
-            break;
-      case 1:
-            switch(currentStep[0]){ 
-                case 1: answer = 4; break;
-                case 2: answer = currentStep[previousSteps[0].indexOf(previousSteps[0][5],1)]; break;
-                case 3: answer = currentStep[1]; break;
-                case 4: answer = currentStep[previousSteps[0].indexOf(previousSteps[0][5],1)]; break;
-            }
-            break
-        case 2:
-            switch(currentStep[0]){
-                case 1: answer = previousSteps[1][5]; break;
-                case 2: answer = previousSteps[0][5]; break;
-                case 3: answer = currentStep[3]; break;
-                case 4: answer = 4; break;
-            }
-            break
-        case 3:
-            switch(currentStep[0]){
-                case 1: answer = currentStep[previousSteps[0].indexOf(previousSteps[0][5],1)]; break;
-                case 2: answer = currentStep[1]; break;
-                case 3: answer = currentStep[previousSteps[1].indexOf(previousSteps[1][5],1)]; break;
-                case 4: answer = currentStep[previousSteps[1].indexOf(previousSteps[1][5],1)]; break;
-            }
-            break
-        case 4:
-            switch(currentStep[0]){
-                case 1: answer = previousSteps[0][5]; break;
-                case 2: answer = previousSteps[1][5]; break;
-                case 3: answer = previousSteps[3][5]; break;
-                case 4: answer = previousSteps[2][5]; break;
-            }
-            break
-    }
+
+    const previousStepsTemp = Array(5).fill(0).map(x => Array(6).fill(0))
+    previousSteps.map((step, indexStep) => {
+        step.map((data, indexData) => {
+            previousStepsTemp[indexStep][indexData] = data
+        })
+    })
+
+    const rules = [
+        {
+            1: currentStep[2], 
+            2: currentStep[2], 
+            3: currentStep[3], 
+            4: currentStep[4]
+        },
+        {   
+            1: 4, 
+            2: currentStep[previousStepsTemp[0].indexOf(previousStepsTemp[0][5],1)], 
+            3: currentStep[1], 
+            4: currentStep[previousStepsTemp[0].indexOf(previousStepsTemp[0][5],1)]
+        },
+        {
+            1: previousStepsTemp[1][5], 
+            2: previousStepsTemp[0][5], 
+            3: currentStep[3], 
+            4: 4
+        },
+        {
+            1: currentStep[previousStepsTemp[0].indexOf(previousStepsTemp[0][5],1)], 
+            2: currentStep[1], 
+            3: currentStep[previousStepsTemp[1].indexOf(previousStepsTemp[1][5],1)], 
+            4: currentStep[previousStepsTemp[1].indexOf(previousStepsTemp[1][5],1)]
+        },
+        {
+            1: previousStepsTemp[0][5], 
+            2: previousStepsTemp[1][5], 
+            3: previousStepsTemp[3][5], 
+            4: previousStepsTemp[2][5]
+        },
+    ]
+
+    const answer = rules[previousSteps.length][currentStep[0]]
+
     currentStep.push(answer)
     previousSteps.push(currentStep)
     return previousSteps
