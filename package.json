@@ -9,7 +9,7 @@
   "main": "./src",
   "scripts": {
     "test": "jest",
-    "generate-docs": "jsdoc --configure .jsdoc.json --verbose"
+    "generate-docs": "documentation build src/** -f html -o docs"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "braintree-jsdoc-template": "^3.3.0",
     "jest": "^26.6.3",
-    "jsdoc": "^3.6.6"
+    "documentation": "^13.1.1"
   },
   "dependencies": {
     "-": "^0.0.1",
