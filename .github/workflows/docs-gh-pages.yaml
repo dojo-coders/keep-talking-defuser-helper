@@ -16,7 +16,7 @@ jobs:
         run: npm i
 
       - name: Build
-        run: npm generate-docs
+        run: npm run generate-docs
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
