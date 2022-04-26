@@ -16,9 +16,7 @@ jobs:
         run: npm i
 
       - name: Build
-        uses: andstor/jsdoc-action@v1
-        with:
-          config_file: .jsdoc.json
+        run: npm generate-docs
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
