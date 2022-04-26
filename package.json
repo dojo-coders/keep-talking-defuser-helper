@@ -16,7 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "braintree-jsdoc-template": "^3.3.0",
-    "documentation": "^3.0.4",
+    "documentation": "^13.2.5",
     "jest": "^26.6.3"
   },
   "dependencies": {
