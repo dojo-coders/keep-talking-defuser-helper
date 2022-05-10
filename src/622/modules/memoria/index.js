@@ -1,62 +1,56 @@
+
 /**
-   * Função que resolve o módulo Memória
-   * @param {string[]} previousSteps - Array que traz as arrays das interações anteriores e suas respostas
-   * @param {string[]} currentStep - Array que traz a informação da interação atual
-   * @returns {string[]} Array com as arrays das interações anteriores e a atual, todas com as suas respectivas respostas
-   * @throws {CURRENT_STEP_INCOMPLETED} A array com o passo atual precisa ter 5 itens.
-   */
+ * @param {} previousSteps - Array de objetos, cada objeto tem que ter duas chaves como `{ "pos": 1, "num": 3 }`
+ * @param {} currentNumber -  número exibido no visor
+ * @returns {Object[]} Array com objetos, cada objeto pode ter duas ou uma chave como `{ "pos": 1, "num": 3 }`
+*/
+const memory = (currentNumber, previousSteps = []) => {
+  const step = previousSteps.length
 
+  const getPositionFromStep = (step) => {
+    const { pos } = previousSteps[step] || {}
+    return { pos }
+  }
 
-const memoria = (previousSteps, currentStep) => {
-    if (currentStep.length !== 5){
-        throw 'CURRENT_STEP_INCOMPLETED'
+  const getNumberFromStep = (step) => {
+    const { num } = previousSteps[step] || {}
+    return { num }
+  }
+
+  const roles = [
+    {
+      1: { "pos": 2 },
+      2: { "pos": 2 },
+      3: { "pos": 3 },
+      4: { "pos": 4 },
+    },
+    {
+      1: { "num": 4 },
+      2: getPositionFromStep(0),
+      3: { "pos": 1 },
+      4: getPositionFromStep(0),
+    },
+    {
+      1: getNumberFromStep(1),
+      2: getNumberFromStep(0),
+      3: { "pos": 3 },
+      4: { "num": 4 },
+    },
+    {
+      1: getPositionFromStep(0),
+      2: { "pos": 1 },
+      3: getPositionFromStep(1),
+      4: getPositionFromStep(1),
+    },
+    {
+      1: getNumberFromStep(0),
+      2: getNumberFromStep(1),
+      3: getNumberFromStep(3),
+      4: getNumberFromStep(2),
     }
+  ]
 
-    const previousStepsTemp = Array(5).fill(0).map(x => Array(6).fill(0))
-    previousSteps.map((step, indexStep) => {
-        step.map((data, indexData) => {
-            previousStepsTemp[indexStep][indexData] = data
-        })
-    })
-
-    const rules = [
-        {
-            1: currentStep[2], 
-            2: currentStep[2], 
-            3: currentStep[3], 
-            4: currentStep[4]
-        },
-        {   
-            1: 4, 
-            2: currentStep[previousStepsTemp[0].indexOf(previousStepsTemp[0][5],1)], 
-            3: currentStep[1], 
-            4: currentStep[previousStepsTemp[0].indexOf(previousStepsTemp[0][5],1)]
-        },
-        {
-            1: previousStepsTemp[1][5], 
-            2: previousStepsTemp[0][5], 
-            3: currentStep[3], 
-            4: 4
-        },
-        {
-            1: currentStep[previousStepsTemp[0].indexOf(previousStepsTemp[0][5],1)], 
-            2: currentStep[1], 
-            3: currentStep[previousStepsTemp[1].indexOf(previousStepsTemp[1][5],1)], 
-            4: currentStep[previousStepsTemp[1].indexOf(previousStepsTemp[1][5],1)]
-        },
-        {
-            1: previousStepsTemp[0][5], 
-            2: previousStepsTemp[1][5], 
-            3: previousStepsTemp[3][5], 
-            4: previousStepsTemp[2][5]
-        },
-    ]
-
-    const answer = rules[previousSteps.length][currentStep[0]]
-
-    currentStep.push(answer)
-    previousSteps.push(currentStep)
-    return previousSteps
+  return roles[step][currentNumber]
 }
-  
-module.exports = memoria
+
+module.exports = memory

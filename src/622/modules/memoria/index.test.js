@@ -1,62 +1,113 @@
-const memoria = require('./index')
+const memory = require('./index')
 
-describe('memoria', () => {
-    describe('passo 1', () => {
-      it('Deveria retornar 3 se o número no visor do primeiro passo é 1 e o botão na segunda posição é 3', () => {
-          previousSteps = []
-          currentStep = [1, 1, 3, 4, 2]
-          expectAnswerStep = [[1, 1, 3, 4, 2, 3]]
-          const resp = memoria(previousSteps, currentStep)
-          expect(resp).toStrictEqual(expectAnswerStep)
-        })
+describe('memory', () => {
+  describe('first step', () => {
+    it('should return second position when number 1 is in display', () => {
+      const resp = memory(1)
+      expect(resp).toEqual(expect.objectContaining({ "pos": 2 }))
     })
 
-    describe('passo 2', () => {
-      it('Deveria retornar 1 se o número no visor do segundo passo é 4, a posição pressionada no passo 1 foi a terceira posição e o número que está na terceira posição do estágio atual é 1', () => {
-        previousSteps = [[3, 4, 1, 3, 2, 3]]
-        currentStep = [4, 3, 4, 1, 2]
-        expectAnswerStep = [[3, 4, 1, 3, 2, 3],[4, 3, 4, 1, 2, 1]]
-        const resp = memoria(previousSteps, currentStep)
-        expect(resp).toStrictEqual(expectAnswerStep)
-      })
+    it('should return second position when number 2 is in display', () => {
+      const resp = memory(2)
+      expect(resp).toEqual(expect.objectContaining({ "pos": 2 }))
     })
 
-    describe('passo 3', () => {
-      it('Deveria retornar 4 se o número no visor do terceiro passo é 1, o número do botão pressionado no segundo passo foi 4', () => {
-        previousSteps = [[4, 3, 4, 1, 2, 2],[1, 1, 3, 4, 2, 4]]
-        currentStep = [1, 3, 4, 1, 2]
-        expectAnswerStep = [[4, 3, 4, 1, 2, 2],[1, 1, 3, 4, 2, 4], [1, 3, 4, 1, 2, 4]]
-        const resp = memoria(previousSteps, currentStep)
-        expect(resp).toStrictEqual(expectAnswerStep)
-      })
+    it('should return third position when number 3 is in display', () => {
+      const resp = memory(3)
+      expect(resp).toEqual(expect.objectContaining({ "pos": 3 }))
     })
 
-    describe('passo 4', () => {
-      it('Deveria retornar 1 se o número no visor do quarto passo é 3, a posição pressionada no passo 2 foi a primeira posição e o número que está na primeira posição do estágio atual é 1', () => {
-        previousSteps = [[3, 4, 1, 3, 2, 3],[4, 3, 4, 1, 2, 3], [1, 1, 3, 4, 2, 3]]
-        currentStep = [3, 1, 3, 4, 2]
-        expectAnswerStep = [[3, 4, 1, 3, 2, 3],[4, 3, 4, 1, 2, 3], [1, 1, 3, 4, 2, 3], [3, 1, 3, 4, 2, 1]]
-        const resp = memoria(previousSteps, currentStep)
-        expect(resp).toStrictEqual(expectAnswerStep)
-      })
+    it('should return third position when number 4 is in display', () => {
+      const resp = memory(4)
+      expect(resp).toEqual(expect.objectContaining({ "pos": 4 }))
+    })
+  })
+
+  describe('second step', () => {
+    it('should return with number 4 when 1 is in display', () => {
+      const resp = memory(1, [{ pos: 1, num: 3 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 4 }))
     })
 
-    describe('passo 5', () => {
-      it('Deveria retornar 3 se o número no visor do quinto passo é 3, o número do botão pressionado no quarto passo foi 3', () => {
-        previousSteps = [[1, 1, 3, 4, 2, 3],[2, 3, 4, 1, 2, 3], [3, 4, 1, 3, 2, 3], [4, 3, 4, 1, 2, 3]]
-        currentStep = [3, 1, 3, 4, 2]
-        expectAnswerStep = [[1, 1, 3, 4, 2, 3],[2, 3, 4, 1, 2, 3], [3, 4, 1, 3, 2, 3], [4, 3, 4, 1, 2, 3], [3, 1, 3, 4, 2, 3]]
-        const resp = memoria(previousSteps, currentStep)
-        expect(resp).toStrictEqual(expectAnswerStep)
-      })
+    it('should return the same position pressed on first step when number 2 is in display', () => {
+      const resp = memory(2, [{ pos: 1, num: 3 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 1 }))
     })
-    describe('error', () => {
-      it('Deveria lançar uma exceção quando o passo atual não estiver completo (número no visor mais os quatro números nos botões', () => {
-        previousSteps = []
-        currentStep = [1, 1, 3, 2]
-        expect(() => {
-          memoria(previousSteps, currentStep)
-        }).toThrowError('CURRENT_STEP_INCOMPLETED')
-      })
+
+    it('should return the first position when number 3 is in display', () => {
+      const resp = memory(3, [{ pos: 1, num: 3 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 1 }))
     })
+
+    it('should return the same position pressed on first step when number 4 is in display', () => {
+      const resp = memory(4, [{ pos: 1, num: 3 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 1 }))
+    })
+  })
+
+  describe('third step', () => {
+    it('should return the number pressed on second step when number 1 is in display', () => {
+      const resp = memory(1, [{ pos: 1, num: 3 }, { pos: 2, num: 3 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 3 }))
+    })
+
+    it('should return the number pressed on first step when number 2 is in display', () => {
+      const resp = memory(2, [{ pos: 1, num: 3 }, { pos: 2, num: 4 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 3 }))
+    })
+
+    it('should return the third position when number 3 is in display', () => {
+      const resp = memory(3, [{ pos: 1, num: 3 }, { pos: 2, num: 4 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 3 }))
+    })
+
+    it('should return the button with number 4 when number 4 is in display', () => {
+      const resp = memory(4, [{ pos: 1, num: 3 }, { pos: 2, num: 4 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 4 }))
+    })
+  })
+
+  describe('fourth step', () => {
+    it('should return the same position pressed on first step when number 1 is in display', () => {
+      const resp = memory(1, [{ pos: 1, num: 3 }, { pos: 2, num: 3 }, { pos: 3, num: 1 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 1 }))
+    })
+
+    it('should return the first position when number 2 is in display', () => {
+      const resp = memory(2, [{ pos: 1, num: 3 }, { pos: 2, num: 3 }, { pos: 3, num: 1 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 1 }))
+    })
+
+    it('should return the same position pressed on second step when number 3 is in display', () => {
+      const resp = memory(3, [{ pos: 1, num: 3 }, { pos: 2, num: 3 }, { pos: 3, num: 1 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 2 }))
+    })
+
+    it('should return the same position pressed on second step when number 4 is in display', () => {
+      const resp = memory(4, [{ pos: 1, num: 3 }, { pos: 2, num: 3 }, { pos: 3, num: 1 }])
+      expect(resp).toEqual(expect.objectContaining({ "pos": 2 }))
+    })
+  })
+
+  describe('fifth step', () => {
+    it('should return the same number pressed on first step when number 1 is in display', () => {
+      const resp = memory(1, [{ pos: 1, num: 1 }, { pos: 2, num: 2 }, { pos: 3, num: 3 }, { pos: 4, num: 4 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 1 }))
+    })
+
+    it('should return the same number pressed on second step when number 2 is in display', () => {
+      const resp = memory(2, [{ pos: 1, num: 1 }, { pos: 2, num: 2 }, { pos: 3, num: 3 }, { pos: 4, num: 4 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 2 }))
+    })
+
+    it('should return the same number pressed on fourth step when number 3 is in display', () => {
+      const resp = memory(3, [{ pos: 1, num: 1 }, { pos: 2, num: 2 }, { pos: 3, num: 3 }, { pos: 4, num: 4 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 4 }))
+    })
+
+    it('should return the same number pressed on third step when number 4 is in display', () => {
+      const resp = memory(4, [{ pos: 1, num: 1 }, { pos: 2, num: 2 }, { pos: 3, num: 3 }, { pos: 4, num: 4 }])
+      expect(resp).toEqual(expect.objectContaining({ "num": 3 }))
+    })
+  })
 })
